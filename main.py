@@ -1,6 +1,6 @@
 import flet as ft
 import re
-from validador import validar_expresion2
+from validador import validar_expresion_regular
 
 
 def main(page: ft.Page):
@@ -243,14 +243,7 @@ def main(page: ft.Page):
     # --------------------------------------------------------------------
 
     # Función para validar la cadena
-    def validar_expresion_regular(expresion, cadena):
-        try:
-            # Compilar la expresión regular
-            patron = re.compile(expresion)
-            # Validar la cadena
-            return patron.match(cadena) is not None
-        except re.error:
-            return False  # La expresión no es válida
+
 
     def validar_expresion(e):
         resultado.value = "Expresión validada correctamente"
