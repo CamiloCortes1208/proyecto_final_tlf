@@ -1,5 +1,4 @@
 import flet as ft
-import re
 from validador import validar_expresion_regular
 
 
@@ -27,7 +26,8 @@ def main(page: ft.Page):
     # Elementos de la sección de validar autómatas
     presentacion = ft.Text("Aquí puedes validar una cadena")
     informacion = ft.Text("Contenido adicional para validar cadena.")
-    recomendacion = ft.Text("Se recomienda ingresar las siguientes expresiones", theme_style=ft.TextThemeStyle.LABEL_LARGE)
+    recomendacion = ft.Text("Se recomienda ingresar las siguientes expresiones",
+                            theme_style=ft.TextThemeStyle.LABEL_LARGE)
 
     # Expresiones
     expresion1 = "^\d{10}$"
@@ -62,10 +62,10 @@ def main(page: ft.Page):
                                   weight=ft.FontWeight.BOLD
                                   )
     string_explicacion = ("Se deben ingresar expresiones regulares, con el fin de validar cadenas para verificar"
-                      " si corresponden a la expresión ingresada o no. Una expresión regular está conformada "
-                      "por los siguientes elementos")
+                          " si corresponden a la expresión ingresada o no. Una expresión regular está conformada "
+                          "por los siguientes elementos")
     texto_explicacion = ft.Text(string_explicacion,
-                            theme_style=ft.TextThemeStyle.LABEL_LARGE)
+                                theme_style=ft.TextThemeStyle.LABEL_LARGE)
 
     # Reglas de los caracteres
     elemento_1 = "^, que marca el inicio de la cadena"
@@ -153,17 +153,18 @@ def main(page: ft.Page):
     )
 
     titulo_ejemplos = ft.Text("Ejemplos de expresiones regulares",
-                            theme_style=ft.TextThemeStyle.TITLE_MEDIUM,
-                            weight=ft.FontWeight.BOLD
-                            )
+                              theme_style=ft.TextThemeStyle.TITLE_MEDIUM,
+                              weight=ft.FontWeight.BOLD
+                              )
     texto_base_ejemplos = ft.Text("Se tienen las siguientes expresiones", theme_style=ft.TextThemeStyle.LABEL_LARGE)
 
     texto_base2_ejemplos = ft.Text(texto_ejemplos, theme_style=ft.TextThemeStyle.LABEL_LARGE)
+
     # ---------------------------------------
 
     # Funciones que crean el contenido de cada pantalla
     # se puede tomar cada función como una pantalla distinta
-    def explore_content():
+    def expresion_regular_ventana():
         return ft.Column([
             presentacion,
             informacion,
@@ -186,13 +187,7 @@ def main(page: ft.Page):
             resultado
         ])
 
-    def commute_content():
-        return ft.Column([
-            ft.Text("Aquí puedes generar un autómata"),
-            ft.Text("Contenido adicional para generar autómata.")
-        ])
-
-    def bookmark_content():
+    def manual_usuario_ventana():
         return ft.Column([
             ft.Text("Aquí puedes leer información de la aplicación"),
             ft.Text("Contenido adicional del manual de usuario"),
@@ -217,11 +212,9 @@ def main(page: ft.Page):
 
         # Cambiar el contenido según la selección
         if e.control.selected_index == 0:
-            content.controls.append(explore_content())
+            content.controls.append(expresion_regular_ventana())
         elif e.control.selected_index == 1:
-            content.controls.append(commute_content())
-        elif e.control.selected_index == 2:
-            content.controls.append(bookmark_content())
+            content.controls.append(manual_usuario_ventana())
 
         content.update()
 
@@ -229,7 +222,6 @@ def main(page: ft.Page):
     page.navigation_bar = ft.NavigationBar(
         destinations=[
             ft.NavigationBarDestination(icon=ft.icons.CHECK_CIRCLE_SHARP, label="Validar cadena"),
-            ft.NavigationBarDestination(icon=ft.icons.BROKEN_IMAGE_OUTLINED, label="Generar autómata"),
             ft.NavigationBarDestination(
                 icon=ft.icons.QUESTION_MARK,
                 label="Manual de usuario",
@@ -243,7 +235,6 @@ def main(page: ft.Page):
     # --------------------------------------------------------------------
 
     # Función para validar la cadena
-
 
     def validar_expresion(e):
         resultado.value = "Expresión validada correctamente"

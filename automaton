@@ -1,0 +1,7 @@
+digraph {
+	start [label=start shape=circle]
+	a [label=a shape=circle]
+	b [label=b shape=doublecircle]
+	start -> a [label=a]
+	a -> b [label=b]
+}
